@@ -1,0 +1,109 @@
+
+# Create sitemap.xml
+sitemap_content = '''<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+    <url>
+        <loc>https://a6macro67technical.github.io/contrarian-investing-strategy/</loc>
+        <lastmod>2024-07-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://a6macro67technical.github.io/contrarian-investing-strategy/images/contrarian-investing-bubble.jpg</image:loc>
+            <image:title>Contrarian Investing Strategy - Asymmetric Returns Visualization</image:title>
+            <image:caption>Investor holding crystal ball with green candlestick charts representing contrarian asymmetric returns</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://a6macro67technical.github.io/contrarian-investing-strategy/images/platinum-trade-chart.jpg</image:loc>
+            <image:title>Platinum Futures Trade Chart - Contrarian Entry Points</image:title>
+            <image:caption>Real contrarian trade execution showing asymmetric profit potential in commodity markets</image:caption>
+        </image:image>
+    </url>
+</urlset>
+'''
+
+# Create robots.txt
+robots_content = '''User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://a6macro67technical.github.io/contrarian-investing-strategy/sitemap.xml
+
+# Crawl rate optimization
+Crawl-delay: 1
+
+# Disallow admin or private areas (if any)
+# Disallow: /admin/
+# Disallow: /private/
+'''
+
+# Create LICENSE (MIT)
+license_content = '''MIT License
+
+Copyright (c) 2024 A6 Macro 67 Technical
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+'''
+
+# Create .htaccess for Apache optimizations
+htaccess_content = '''# Enable compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Enable caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+# Redirect to HTTPS
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Prevent directory listing
+Options -Indexes
+
+# Set charset
+AddDefaultCharset UTF-8
+'''
+
+# Write all files
+files = {
+    'sitemap.xml': sitemap_content,
+    'robots.txt': robots_content,
+    'LICENSE': license_content,
+    '.htaccess': htaccess_content
+}
+
+for filename, content in files.items():
+    with open(f'/mnt/agents/output/{filename}', 'w', encoding='utf-8') as f:
+        f.write(content)
+    print(f"✅ {filename} created")
+
+print("\n📦 All repository files generated successfully!")
